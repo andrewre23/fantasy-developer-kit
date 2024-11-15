@@ -1,0 +1,14 @@
+# analysis
+numpy==2.0.2
+pandas==2.2.3
+scikit-learn==1.5.2
+statsmodels==0.14.4
+
+# web
+bs4==0.0.2
+requests==2.32.3
+yahoo_oauth==2.0
+
+# plotting
+matplotlib==3.9.2
+seaborn==0.13.2
