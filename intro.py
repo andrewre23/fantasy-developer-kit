@@ -17,7 +17,7 @@ players = get_players(token, **SCORING, season=SEASON,
 
 players.head()
 
-USE_SAVED_DATA = False
+USE_SAVED_DATA = True
 
 # note: **SCORING same as passing qb='pass4', skill='ppr' ... to function
 if USE_SAVED_DATA:
@@ -41,26 +41,23 @@ sims.head()
 # who is player 165
 players.loc[[1091, 498]]
 
+# justin herbert's fantasy points distribution
 nsims = name_sims(sims, players)
-
-nsims.head()
-
 nsims['justin-herbert'].mean()
 nsims['justin-herbert'].median()
-
 nsims['justin-herbert'].describe(percentiles=[0.05, .25, .5, .75, .95])
 
 g = sns.FacetGrid(nsims, aspect=2)
 g = g.map(sns.kdeplot, 'justin-herbert', fill=True)
 g.fig.subplots_adjust(top=0.9)
 g.fig.suptitle("Justin Herbert's Fantasy Points Distribution - Wk 3, 2023")
+import matplotlib.pyplot as plt
+plt.show()
 
+# will herbert outscore mahomes?
 nsims[['justin-herbert', 'patrick-mahomes']].head()
-
 (nsims['justin-herbert'] > nsims['patrick-mahomes']).head()
-
 (nsims['justin-herbert'] > nsims['patrick-mahomes']).mean()
-
 nsims_long = nsims[['justin-herbert', 'patrick-mahomes']].stack().reset_index()
 nsims_long.columns = ['sim_n', 'player', 'pts']
 
@@ -69,10 +66,12 @@ g.map(sns.kdeplot, 'pts', fill=True)
 g.add_legend()
 g.fig.subplots_adjust(top=0.9)
 g.fig.suptitle("Herbert vs Mahomes Fantasy Points Distribution - Wk 3, 2023")
+plt.show()
 
 (nsims['justin-herbert'] >
          nsims[['matthew-stafford', 'justin-fields']].max(axis=1) + 11.5).mean()
 
+# best ball
 nsims['bb_qb'] = nsims[['justin-herbert', 'matthew-stafford']].max(axis=1)
 nsims[['bb_qb', 'justin-herbert', 'matthew-stafford']].describe()
 
@@ -82,46 +81,29 @@ nsims[['bb_qb2', 'bb_qb', 'justin-herbert', 'matthew-stafford',
       'kirk-cousins']].describe().round(2)
 
 # projected vs actual vs % likelihood
-
 players.head()
-
 (25.68 > nsims['patrick-mahomes']).mean()
 
 qbs = players.loc[players['pos'] == 'QB']
 qbs['proj'] = sims.mean().round(2)
-
-
 qbs.sort_values('proj', ascending=False).head(15)[['name', 'proj', 'actual']]
 
 def fpts_percentile(row):
     return (row['actual'] > sims[row.name]).mean()
 
 qbs['pctile'] = qbs.apply(fpts_percentile, axis=1)
-
-qbs.sort_values('proj', ascending=False).head(15)[['name', 'proj', 'actual',
-                                                   'pctile']]
-
+qbs.sort_values('proj', ascending=False).head(15)[['name', 'proj', 'actual', 'pctile']]
 qbs['pctile'].describe(percentiles=[.1, .2, .3, .4, .5, .6, .7, .8, .9])
-
-qbs.sort_values('pctile', ascending=False).head(10)[['name', 'proj', 'actual',
-                                                     'pctile']]
-
-qbs.sort_values('pctile', ascending=False).tail(10)[['name', 'proj', 'actual',
-                                                     'pctile']]
-
-qbs.sort_values('actual', ascending=False).head(10)[['name', 'proj', 'actual',
-                                                     'pctile']]
+qbs.sort_values('pctile', ascending=False).head(10)[['name', 'proj', 'actual', 'pctile']]
+qbs.sort_values('pctile', ascending=False).tail(10)[['name', 'proj', 'actual', 'pctile']]
+qbs.sort_values('actual', ascending=False).head(10)[['name', 'proj', 'actual', 'pctile']]
 
 # correlations
 nsims[['justin-herbert', 'keenan-allen']].corr()
-
 nsims[['justin-herbert', 'min']].corr()
-
 nsims[['justin-herbert', 'keenan-allen', 'min']].corr()
-
 nsims[['justin-herbert', 'kirk-cousins', 'keenan-allen', 'justin-jefferson',
        'min', 'jordan-love']].corr().round(2)
-
 nsims['keenan-allen'].describe()
 
 pd.concat([
@@ -135,7 +117,7 @@ print((nsims[['joe-burrow', 'mike-evans']].sum(axis=1) > 50).mean())
 
 print((nsims[['joe-burrow', 'tee-higgins']].sum(axis=1) > 50).mean())
 
-# offense or defense as underog or favorite
+# offense or defense as underdog or favorite
 nsims[['min', 'pit']].describe()
 
 nsims[['justin-herbert', 'min', 'pit']].corr()
