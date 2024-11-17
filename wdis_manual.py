@@ -156,3 +156,5 @@ if __name__ == '__main__':
     g.fig.suptitle(f'WDIS Projections')
     g.fig.savefig(path.join(OUTPUT_PATH, f'player_wdis_dist_{TAG}.png'),
                 bbox_inches='tight', dpi=500)
+    import matplotlib.pyplot as plt
+    plt.show()
