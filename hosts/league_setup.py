@@ -9,17 +9,11 @@ from utilities import DB_PATH
 #########################################
 
 LEAGUES = {
-    'nate-league': {
-        'host': 'fleaflicker',
-        'league_id': 34958,
-        'team_id': 217960,
-        'scoring': {'qb': 'pass_6', 'skill': 'ppr_1', 'dst': 'dst_high'}},
-    # add new leagues here in same format (uncomment)
-    # 'your-league': {
-    #     'host': 'espn',
-    #     'league_id': 34958,
-    #     'team_id': 217960,
-    #     'scoring': {'qb': 'pass_6', 'skill': 'ppr_1', 'dst': 'dst_high'}},
+    'b2b': {
+        'host': 'espn',
+        'league_id': 956882,
+        'team_id': 9,
+        'scoring': {'qb': 'pass_4', 'skill': 'ppr_0', 'dst': 'dst_std'}},
 }
 
 ##################################################

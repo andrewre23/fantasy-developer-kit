@@ -1,7 +1,7 @@
 import sqlite3
 from pandas import DataFrame
 import pandas as pd
-import hosts.fleaflicker as site
+import hosts.espn as site
 from utilities import DB_PATH
 
 LEAGUE_ID = 316893

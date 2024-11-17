@@ -189,7 +189,7 @@ if __name__ == '__main__':
     # parameters
     ############
 
-    LEAGUE_ID = 242906
+    LEAGUE_ID = 956882
 
     ESPN_PARAMETERS = {'league_id': LEAGUE_ID,
                     'swid': SWID,

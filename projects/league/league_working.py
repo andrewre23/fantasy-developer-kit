@@ -1,4 +1,4 @@
-import hosts.fleaflicker as site
+import hosts.espn as site
 import hosts.db as db
 import sqlite3
 import pandas as pd
@@ -15,11 +15,11 @@ from utilities import (get_sims, get_sims_from_file, generate_token,
 USE_SAVED_DATA = True
 
 if USE_SAVED_DATA:
-    LEAGUE = 'nate-league'
+    LEAGUE = 'b2b'
     WEEK = 2
 else:
     # needs to be in hosts/league_setup.py
-    LEAGUE = 'put-your-league-here'
+    LEAGUE = 'b2b'
     WEEK = 2
 
 #################

@@ -14,7 +14,7 @@ from utilities import (LICENSE_KEY, generate_token, master_player_lookup,
 #####################
 # set parameters here
 #####################
-LEAGUE = 'nate-league'
+LEAGUE = 'b2b'
 WEEK = 1
 WRITE_OUTPUT = False
 

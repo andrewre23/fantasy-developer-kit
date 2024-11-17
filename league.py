@@ -13,7 +13,7 @@ from utilities import (generate_token, LICENSE_KEY, DB_PATH,
 #####################
 # set parameters here
 #####################
-LEAGUE = 'nate-league'
+LEAGUE = 'b2b'
 WEEK = 1
 WRITE_OUTPUT = False
 
